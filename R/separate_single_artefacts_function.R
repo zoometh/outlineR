@@ -11,13 +11,17 @@
 #' and images with objects showing light hues need to have
 #' a higher threshold (~ 80%). Very contrasted images could have a
 #' lesser threshold (~ 20%)
+#' @param min.area the minimal area, by default: 20 px. If the area
+#' of the object is under this threshold, the object will be discarded.
 #'
 #' @return If return_combined_outlines = TRUE, returns the combined
 #' Coo objects in a single Opn file. If return_combined_outlines = FALSE,
 #' returns a list of coordinate matrices of each open outline.
 #'
 #' @export
-separate_single_artefacts <- function(inpath, outpath, thres = "50%") {
+separate_single_artefacts <- function(inpath, outpath,
+                                      thres = "50%",
+                                      min.area = 20) {
 
   files_to_use_names <- list.files(inpath,
                                    full.names = FALSE,
@@ -72,7 +76,9 @@ separate_single_artefacts <- function(inpath, outpath, thres = "50%") {
     }
     # plot(bin_image_labeled_filled_frame)
     features <- EBImage::computeFeatures.shape(bin_image_labeled_filled_frame)
-
+    print(paste0("nb of object before rm small ones: ", nrow(features)))
+    features <- features[features[, "s.area"] > min.area,]
+    print(paste0("nb of object after rm small ones: ", nrow(features)))
     all_objects <- 1:max(bin_image_labeled_filled_frame)
 
     for (object_counter in all_objects) {

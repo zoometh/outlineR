@@ -79,7 +79,7 @@ separate_single_artefacts <- function(inpath, outpath,
     print(paste0("nb of object before rm small ones: ", nrow(features)))
     features <- features[features[, "s.area"] > min.area,]
     print(paste0("nb of object after rm small ones: ", nrow(features)))
-    all_objects <- 1:max(bin_image_labeled_filled_frame)
+    all_objects <- 1:nrow(features)
 
     for (object_counter in all_objects) {
       # object_counter <- 1

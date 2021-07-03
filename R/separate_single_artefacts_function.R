@@ -62,6 +62,7 @@ separate_single_artefacts <- function(inpath, outpath,
     # plot(bin_image)
 
     bin_image_labeled <- EBImage::bwlabel(bin_image)
+    # EBImage::computeFeatures.shape(bin_image_labeled)
     # plot(bin_image_labeled)
 
     # important step to be able to work with images that are already binary and images that are still in grayscale
@@ -79,7 +80,7 @@ separate_single_artefacts <- function(inpath, outpath,
     print(paste0("nb of object before rm small ones: ", nrow(features)))
     features <- features[features[, "s.area"] > min.area,]
     print(paste0("nb of object after rm small ones: ", nrow(features)))
-    all_objects <- 1:nrow(features)
+    all_objects <- row.names(features)
 
     for (object_counter in all_objects) {
       # object_counter <- 1

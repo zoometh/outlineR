@@ -19,9 +19,12 @@
 #' returns a list of coordinate matrices of each open outline.
 #'
 #' @export
-separate_single_artefacts <- function(inpath, outpath,
+separate_single_artefacts <- function(inpath,
+                                      outpath,
                                       thres = "50%",
                                       min.area = 20) {
+  # inpath = "C:/Users/supernova/Dropbox/My PC (supernova-pc)/Documents/Rdev/img/gmm/"
+  # outpath = "C:/Users/supernova/Dropbox/My PC (supernova-pc)/Documents/Rdev/img/gmm/out/"
 
   files_to_use_names <- list.files(inpath,
                                    full.names = FALSE,

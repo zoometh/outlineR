@@ -30,7 +30,7 @@ separate_single_artefacts <- function(inpath, outpath,
                        full.names = TRUE,
                        pattern = c(".jpg", ".jpeg", ".JPG", ".JPEG"))
 
-  pb <- utils::txtProgressBar(min = 0, max = length(inpath), style = 3)
+  # pb <- utils::txtProgressBar(min = 0, max = length(inpath), style = 3)
   for (current_masked_file in 1:length(inpath)) {
     # current_masked_file <- 1
     # x_raw <- imager::load.image(inpath[current_masked_file])
